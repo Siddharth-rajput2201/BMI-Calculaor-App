@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'Boxdesign.dart';
 import 'Icon_gender.dart';
+import 'constants.dart';
 
-const double bottomcontainerheight = 80;
-const bottomcontainercolor = Color(0xFFEB1555);
-const activeboxcolor = Color(0xFF1D1E33);
-const inactiveboxcolor = Color(0xFF111328);
-enum Gender{
+enum Gender {
   male,
   female,
 }
@@ -19,8 +17,9 @@ class BMICalculatorpage extends StatefulWidget {
 }
 
 class _BMICalculatorpageState extends State<BMICalculatorpage> {
+  Gender selectedGender;
 
-  Color maleboxcolor = inactiveboxcolor;
+  /*Color maleboxcolor = inactiveboxcolor;
   Color femaleboxcolor = inactiveboxcolor;
 
   void updatecolor(Gender SelectedGender)
@@ -51,8 +50,8 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
       }
     }
   }
+*/
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,64 +59,99 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
           title: Text("BMI Calculator"),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
-                      child: GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            updatecolor(Gender.male);
-                          });
-                        },
-                        child: BoxForBody(
-                    boxcolor: maleboxcolor,
+                      child: BoxForBody(
+                    onpress: () {
+                      setState(() {
+                        /*updatecolor(Gender.male);*/
+                        selectedGender = Gender.male;
+                      });
+                    },
+                    boxcolor: /*maleboxcolor*/ selectedGender == Gender.male
+                        ? kactiveboxcolor
+                        : kinactiveboxcolor,
                     customchild: BoxContentIcon(
-                        iconData: FontAwesomeIcons.mars,
-                        boxString: "MALE",
+                      iconData: FontAwesomeIcons.mars,
+                      boxString: "MALE",
                     ),
-                  ),
-                      )),
+                  )),
                   Expanded(
-                      child: GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            updatecolor(Gender.female);
-                          });
-                        },
-                        child: BoxForBody(
-                    boxcolor: femaleboxcolor,
+                      child: BoxForBody(
+                    onpress: () {
+                      setState(() {
+                        /*updatecolor(Gender.female);*/
+                        selectedGender = Gender.female;
+                      });
+                    },
+                    boxcolor: /*femaleboxcolor,*/ selectedGender ==
+                            Gender.female
+                        ? kactiveboxcolor
+                        : kinactiveboxcolor,
                     customchild: BoxContentIcon(
-                        iconData: FontAwesomeIcons.venus,
-                        boxString: "FEMALE",
+                      iconData: FontAwesomeIcons.venus,
+                      boxString: "FEMALE",
                     ),
-                  ),
-                      )),
+                  )),
                 ],
               ),
             ),
             Expanded(
                 child: BoxForBody(
-              boxcolor: activeboxcolor,
+              boxcolor: kactiveboxcolor,
+              customchild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "HEIGHT",
+                    style: TextStyle(color: ktextcolor),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: <Widget>[
+                      Text(sliderheightvalue.toString(), style: knumberstyle),
+                      Text("cm", style: TextStyle(color: ktextcolor)),
+                    ],
+                  ),
+                  Slider(
+                    activeColor: kbottomcontainercolor,
+                    //inactiveColor: kactiveboxcolor,
+//                    divisions: 10,
+                    value: sliderheightvalue.toDouble(),
+                    onChanged: (double newValue){
+                      setState(() {
+                        sliderheightvalue = newValue.toInt();
+                      });
+                  },
+                    min: 1,
+                    max: 250,
+                  ),
+                ],
+              ),
             )),
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
                       child: BoxForBody(
-                    boxcolor: activeboxcolor,
+                    boxcolor: kactiveboxcolor,
                   )),
                   Expanded(
                       child: BoxForBody(
-                    boxcolor: activeboxcolor,
+                    boxcolor: kactiveboxcolor,
                   )),
                 ],
               ),
             ),
             Container(
-              color: bottomcontainercolor,
-              height: bottomcontainerheight,
+              color: kbottomcontainercolor,
+              height: kbottomcontainerheight,
               width: double.infinity,
               margin: EdgeInsets.only(top: 15),
             )
@@ -125,5 +159,3 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
         ));
   }
 }
-
-
