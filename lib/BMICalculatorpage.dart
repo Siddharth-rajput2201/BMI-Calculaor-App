@@ -7,6 +7,11 @@ import 'Icon_gender.dart';
 const double bottomcontainerheight = 80;
 const bottomcontainercolor = Color(0xFFEB1555);
 const activeboxcolor = Color(0xFF1D1E33);
+const inactiveboxcolor = Color(0xFF111328);
+enum Gender{
+  male,
+  female,
+}
 
 class BMICalculatorpage extends StatefulWidget {
   @override
@@ -14,6 +19,40 @@ class BMICalculatorpage extends StatefulWidget {
 }
 
 class _BMICalculatorpageState extends State<BMICalculatorpage> {
+
+  Color maleboxcolor = inactiveboxcolor;
+  Color femaleboxcolor = inactiveboxcolor;
+
+  void updatecolor(Gender SelectedGender)
+  {
+    if(SelectedGender == Gender.male)
+      {
+        if(maleboxcolor == inactiveboxcolor)
+          {
+            maleboxcolor = activeboxcolor;
+            femaleboxcolor = inactiveboxcolor;
+          }
+        else
+          {
+            maleboxcolor = inactiveboxcolor;
+          }
+      }
+
+    if(SelectedGender == Gender.female)
+    {
+      if(femaleboxcolor == inactiveboxcolor)
+      {
+        femaleboxcolor = activeboxcolor;
+        maleboxcolor = inactiveboxcolor;
+      }
+      else
+      {
+        femaleboxcolor = inactiveboxcolor;
+      }
+    }
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,21 +65,35 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                      child: BoxForBody(
-                    boxcolor: activeboxcolor,
+                      child: GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            updatecolor(Gender.male);
+                          });
+                        },
+                        child: BoxForBody(
+                    boxcolor: maleboxcolor,
                     customchild: BoxContentIcon(
-                      iconData: FontAwesomeIcons.mars,
-                      boxString: "MALE",
+                        iconData: FontAwesomeIcons.mars,
+                        boxString: "MALE",
                     ),
-                  )),
+                  ),
+                      )),
                   Expanded(
-                      child: BoxForBody(
-                    boxcolor: activeboxcolor,
+                      child: GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            updatecolor(Gender.female);
+                          });
+                        },
+                        child: BoxForBody(
+                    boxcolor: femaleboxcolor,
                     customchild: BoxContentIcon(
-                      iconData: FontAwesomeIcons.venus,
-                      boxString: "FEMALE",
+                        iconData: FontAwesomeIcons.venus,
+                        boxString: "FEMALE",
                     ),
-                  )),
+                  ),
+                      )),
                 ],
               ),
             ),
