@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'Boxdesign.dart';
 import 'Icon_gender.dart';
 import 'constants.dart';
+import 'custombuttonplusmminus.dart';
 
 enum Gender {
   male,
@@ -108,7 +109,7 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
                 children: <Widget>[
                   Text(
                     "HEIGHT",
-                    style: TextStyle(color: ktextcolor),
+                    style: TextStyle(color: ktextcolor,fontSize: 18),
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -141,10 +142,66 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
                   Expanded(
                       child: BoxForBody(
                     boxcolor: kactiveboxcolor,
+                        customchild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text("WEIGHT", style: TextStyle(color: ktextcolor , fontSize: 18),),
+                            Text(weightvaue.toString() , style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40),),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Custombuttomplusminus(custombuttonicon: FontAwesomeIcons.plus,
+                                  custombuttonplusminusonpressed: (){
+                                    setState(() {
+                                      weightvaue = weightvaue + 1;
+                                    });
+                                  },
+                                ),
+                                Custombuttomplusminus(
+                                  custombuttonicon: FontAwesomeIcons.minus,
+                                  custombuttonplusminusonpressed: (){
+                                    setState(() {
+                                      weightvaue = weightvaue - 1;
+                                    });
+                                  },
+
+                                ),
+                              ],
+                            )
+                          ],
+                        )
                   )),
                   Expanded(
                       child: BoxForBody(
                     boxcolor: kactiveboxcolor,
+                          customchild: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text("AGE", style: TextStyle(color: ktextcolor , fontSize: 18),),
+                              Text(agevalue.toString() , style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40),),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Custombuttomplusminus(custombuttonicon: FontAwesomeIcons.plus,
+                                    custombuttonplusminusonpressed: (){
+                                      setState(() {
+                                        agevalue = agevalue + 1;
+                                      });
+                                    },
+                                  ),
+                                  Custombuttomplusminus(
+                                    custombuttonicon: FontAwesomeIcons.minus,
+                                    custombuttonplusminusonpressed: (){
+                                      setState(() {
+                                        agevalue = agevalue - 1;
+                                      });
+                                    },
+
+                                  ),
+                                ],
+                              )
+                            ],
+                          )
                   )),
                 ],
               ),
@@ -159,3 +216,5 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
         ));
   }
 }
+
+

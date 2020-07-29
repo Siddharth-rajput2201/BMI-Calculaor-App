@@ -13,7 +13,7 @@ class BoxForBody extends StatelessWidget {
       onTap: onpress,
       child: Container(
         child: customchild,
-        margin: EdgeInsets.all(15),
+        margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: boxcolor,

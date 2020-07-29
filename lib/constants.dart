@@ -7,3 +7,5 @@ const kinactiveboxcolor = Color(0xFF111328);
 const ktextcolor = Color(0xFF8D8E98);
 const knumberstyle = TextStyle(fontWeight: FontWeight.w900, fontSize: 50);
 int sliderheightvalue = 180;
+int agevalue = 20;
+int weightvaue = 60;
