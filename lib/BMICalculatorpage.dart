@@ -1,3 +1,4 @@
+import 'package:bmicalculatorapp/BMI_Result_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
@@ -206,11 +207,24 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
                 ],
               ),
             ),
-            Container(
-              color: kbottomcontainercolor,
-              height: kbottomcontainerheight,
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 15),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>bmiresultpage()));
+              },
+              child: Container(
+                color: kbottomcontainercolor,
+                height: kbottomcontainerheight,
+                width: double.infinity,
+                margin: EdgeInsets.only(top: 15),
+                child: Center(
+                    child: Text("CALCULATE",style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontSize: 20,
+                      fontWeight: FontWeight.w700
+                    ),
+                    ),
+                ),
+              ),
             )
           ],
         ));
