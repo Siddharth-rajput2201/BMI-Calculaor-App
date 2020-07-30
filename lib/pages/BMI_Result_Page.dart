@@ -1,10 +1,15 @@
-import 'package:bmicalculatorapp/Boxdesign.dart';
-import 'package:bmicalculatorapp/bottomcontainer.dart';
+import 'package:bmicalculatorapp/widgets/Boxdesign.dart';
+import 'package:bmicalculatorapp/widgets/bottomcontainer.dart';
 import 'package:bmicalculatorapp/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class Bmiresultpage extends StatelessWidget {
+  final String bmi;
+  final String bmiresult;
+  final String bmiinference;
+
+  Bmiresultpage({@required this.bmi , @required this.bmiresult ,@required this.bmiinference});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +29,9 @@ class Bmiresultpage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text("Normal",style: kresultpagetitle,),
-                Text("Normal"),
-                Text("Normal"),
+                Text(bmiresult,style: kresultpagetitle, textAlign: TextAlign.center,),
+                Text(bmi , style: kBMIresultstyle,),
+                Text(bmiinference , textAlign: TextAlign.center, style: TextStyle(fontSize:20),),
               ],
             ),
           )),

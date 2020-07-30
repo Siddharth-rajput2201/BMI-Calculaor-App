@@ -1,13 +1,14 @@
-import 'package:bmicalculatorapp/BMI_Result_Page.dart';
+import 'package:bmicalculatorapp/class/bmicalculatorclass.dart';
+import 'package:bmicalculatorapp/pages/BMI_Result_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'Boxdesign.dart';
-import 'Icon_gender.dart';
-import 'constants.dart';
-import 'custombuttonplusmminus.dart';
-import 'bottomcontainer.dart';
+import '../widgets/Boxdesign.dart';
+import '../widgets/Icon_gender.dart';
+import '../constants.dart';
+import '../widgets/custombuttonplusmminus.dart';
+import '../widgets/bottomcontainer.dart';
 
 enum Gender {
   male,
@@ -59,7 +60,7 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("BMI Calculator"),
+          title: Center(child: Text("BMI Calculator")),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -148,7 +149,16 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text("WEIGHT", style: TextStyle(color: ktextcolor , fontSize: 18),),
-                            Text(weightvaue.toString() , style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40),),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              textBaseline: TextBaseline.alphabetic,
+                              children: <Widget>[
+                                Text(weightvaue.toString(), style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40),),
+                                Text("kg", style: TextStyle(color: ktextcolor)),
+                              ],
+                            ),
+                            //Text(weightvaue.toString() , style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40),),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
@@ -180,7 +190,16 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text("AGE", style: TextStyle(color: ktextcolor , fontSize: 18),),
-                              Text(agevalue.toString() , style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40),),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.baseline,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                textBaseline: TextBaseline.alphabetic,
+                                children: <Widget>[
+                                  Text(agevalue.toString(), style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40),),
+                                  Text("Yr", style: TextStyle(color: ktextcolor)),
+                                ],
+                              ),
+                              //Text(agevalue.toString() , style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40),),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
@@ -209,7 +228,8 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
               ),
             ),
             Bottombutton(title: "CALCULATE",redirect: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Bmiresultpage()));
+              BMIbrain calculated = BMIbrain(height: sliderheightvalue, weight: weightvaue);
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Bmiresultpage(bmi: calculated.bmi(), bmiresult: calculated.bmiresult(),bmiinference: calculated.bmiinference(),) ));
             },),
           ],
         ));
