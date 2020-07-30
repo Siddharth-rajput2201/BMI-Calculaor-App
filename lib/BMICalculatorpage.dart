@@ -7,6 +7,7 @@ import 'Boxdesign.dart';
 import 'Icon_gender.dart';
 import 'constants.dart';
 import 'custombuttonplusmminus.dart';
+import 'bottomcontainer.dart';
 
 enum Gender {
   male,
@@ -207,28 +208,11 @@ class _BMICalculatorpageState extends State<BMICalculatorpage> {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>bmiresultpage()));
-              },
-              child: Container(
-                color: kbottomcontainercolor,
-                height: kbottomcontainerheight,
-                width: double.infinity,
-                margin: EdgeInsets.only(top: 15),
-                child: Center(
-                    child: Text("CALCULATE",style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontSize: 20,
-                      fontWeight: FontWeight.w700
-                    ),
-                    ),
-                ),
-              ),
-            )
+            Bottombutton(title: "CALCULATE",redirect: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Bmiresultpage()));
+            },),
           ],
         ));
   }
 }
-
 

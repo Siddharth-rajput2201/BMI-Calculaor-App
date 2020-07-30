@@ -9,3 +9,4 @@ const knumberstyle = TextStyle(fontWeight: FontWeight.w900, fontSize: 50);
 int sliderheightvalue = 180;
 int agevalue = 20;
 int weightvaue = 60;
+const kresultpagetitle = TextStyle(fontSize: 24 , color: Colors.green , fontWeight: FontWeight.w400);
